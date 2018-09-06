@@ -9,6 +9,8 @@ public class Robo : MonoBehaviour {
 
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float jumpHeight;
 
     [SerializeField]
     private GameManager gm;
@@ -62,7 +64,7 @@ public class Robo : MonoBehaviour {
         // All other collisions, i.e Game Over
         else
         {
-            gm.TogglePauseMenu();
+            gm.ToggleGameOverMenu();
         }
     }
 
@@ -85,7 +87,7 @@ public class Robo : MonoBehaviour {
     {
         isJumping = true;
         animator.SetBool("isJumping", isJumping);
-        Vector3 movement = new Vector3(0, 350, 0);
+        Vector3 movement = new Vector3(0, jumpHeight, 0);
         rb.AddForce(movement);
     }
 
