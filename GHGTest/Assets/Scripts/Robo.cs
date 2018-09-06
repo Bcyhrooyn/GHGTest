@@ -36,7 +36,8 @@ public class Robo : MonoBehaviour {
         {
             isJumping = false;
             animator.SetBool("isJumping", isJumping);
-        }
+            rb.velocity = new Vector3(0, 0, 0);
+        }        
     }
 
     private void HandleMovement(float horizontal)
@@ -58,7 +59,7 @@ public class Robo : MonoBehaviour {
     {
         isJumping = true;
         animator.SetBool("isJumping", isJumping);
-        Vector3 movement = new Vector3(0, 250, 0);
+        Vector3 movement = new Vector3(0, 350, 0);
         rb.AddForce(movement);
     }
 
