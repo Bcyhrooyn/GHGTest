@@ -10,7 +10,8 @@ public class Robo : MonoBehaviour {
 
     [SerializeField]
     private float speed;
-    private bool isJumping;
+    private bool isJumping = false;
+    private bool isFlipped = false;
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
@@ -42,8 +43,15 @@ public class Robo : MonoBehaviour {
     {
         Vector3 movement = new Vector3(horizontal * speed, rb.velocity.y, rb.velocity.z);
         rb.velocity = movement;
-        
-        animator.SetFloat("speed", horizontal * speed);
+        if ((horizontal > 0 && isFlipped) || (horizontal < 0 && !isFlipped))
+        {
+            isFlipped = !isFlipped;
+            Vector3 scale = transform.localScale;
+            scale.z *= -1;
+            transform.localScale = scale;
+        }
+
+        animator.SetFloat("speed", Mathf.Abs(horizontal));
     }
 
     private void Jump()
