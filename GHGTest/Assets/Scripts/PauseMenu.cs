@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour {
     private GameManager GM;
     [SerializeField]
     public Button selectableButton;
+    [SerializeField]
+    private bool isGameOver = false;
 
     public void OnQuitButtonClicked()
     {
@@ -24,7 +26,14 @@ public class PauseMenu : MonoBehaviour {
 
     public void OnPlayAgainButtonClicked()
     {
-        GM.ToggleGameOverMenu();
+        if (isGameOver)
+        {
+            GM.ToggleGameOverMenu();
+        }
+        else
+        {
+            GM.ToggleVictoryMenu();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(null);
     }

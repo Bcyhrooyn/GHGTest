@@ -15,7 +15,6 @@ public class Robo : MonoBehaviour {
     [SerializeField]
     private GameManager gm;
     private bool isJumping = false;
-    private bool isFlipped = false;
     private bool isAttacking = false;
 	// Use this for initialization
 	void Start () {
@@ -55,9 +54,12 @@ public class Robo : MonoBehaviour {
             animator.SetBool("isJumping", isJumping);
             rb.velocity = new Vector3(0, 0, 0);
         }
-
-
-
+        else if (collision.gameObject.CompareTag("Finish"))
+        {
+            isJumping = false;
+            animator.SetBool("isJumping", isJumping);
+            rb.velocity = new Vector3(0, 0, 0);
+        }
         // All other collisions, i.e Game Over
         else
         {

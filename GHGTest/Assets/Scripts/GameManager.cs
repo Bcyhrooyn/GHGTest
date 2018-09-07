@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public PauseMenu pauseMenu;
     public PauseMenu gameOverMenu;
+    public PauseMenu victoryMenu;
     private AudioSource audioSource;
 
 	// Use this for initialization
@@ -52,6 +53,23 @@ public class GameManager : MonoBehaviour {
         {
             gameOverMenu.GetComponentInChildren<Canvas>().enabled = true;
             gameOverMenu.selectableButton.Select();
+            Time.timeScale = 0.0f;
+            audioSource.Pause();
+        }
+    }
+
+    public void ToggleVictoryMenu()
+    {
+        if (victoryMenu.GetComponentInChildren<Canvas>().enabled)
+        {
+            victoryMenu.GetComponentInChildren<Canvas>().enabled = false;
+            EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(null);
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            victoryMenu.GetComponentInChildren<Canvas>().enabled = true;
+            victoryMenu.selectableButton.Select();
             Time.timeScale = 0.0f;
             audioSource.Pause();
         }
