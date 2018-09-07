@@ -163,7 +163,7 @@ Prefab:
     - target: {fileID: 114650639432558352, guid: 8fab836e38b1bf94d82691280afc516d,
         type: 2}
       propertyPath: scrollSpeed
-      value: -5
+      value: -7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fab836e38b1bf94d82691280afc516d, type: 2}
@@ -215,7 +215,7 @@ Prefab:
     - target: {fileID: 114215322879537004, guid: ee7703024c288e843bcbe5649466f226,
         type: 2}
       propertyPath: scrollSpeed
-      value: -5
+      value: -7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee7703024c288e843bcbe5649466f226, type: 2}
@@ -290,6 +290,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4219496622048732, guid: ee7703024c288e843bcbe5649466f226,
     type: 2}
   m_PrefabInternal: {fileID: 177081188}
+--- !u!114 &558066397 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114661547604829500, guid: e2c20b749a290eb4684fd24c5ada5cd2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1738276446}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &585663089
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,8 +627,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  jumpHeight: 500
+  jumpHeight: 800
   gm: {fileID: 602298448}
+--- !u!114 &1265405698 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114044878874117978, guid: 9be317241f06428418e4e730770a81cb,
+    type: 2}
+  m_PrefabInternal: {fileID: 1430556101}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &1350659734 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114758648004903642, guid: e2c20b749a290eb4684fd24c5ada5cd2,
@@ -678,6 +690,11 @@ Prefab:
       propertyPath: GM
       value: 
       objectReference: {fileID: 602298448}
+    - target: {fileID: 114997459527007686, guid: 9be317241f06428418e4e730770a81cb,
+        type: 2}
+      propertyPath: selectableButton
+      value: 
+      objectReference: {fileID: 1265405698}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9be317241f06428418e4e730770a81cb, type: 2}
   m_IsPrefabParent: 0
@@ -787,6 +804,11 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1904145491}
+    - target: {fileID: 114758648004903642, guid: e2c20b749a290eb4684fd24c5ada5cd2,
+        type: 2}
+      propertyPath: selectableButton
+      value: 
+      objectReference: {fileID: 558066397}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2c20b749a290eb4684fd24c5ada5cd2, type: 2}
   m_IsPrefabParent: 0
@@ -983,7 +1005,7 @@ Prefab:
     - target: {fileID: 114888120434611428, guid: ecbbee1f0185e4045ae8726a3bc85b14,
         type: 2}
       propertyPath: scrollSpeed
-      value: -5
+      value: -7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ecbbee1f0185e4045ae8726a3bc85b14, type: 2}
@@ -1120,7 +1142,7 @@ Prefab:
     - target: {fileID: 114650639432558352, guid: 8fab836e38b1bf94d82691280afc516d,
         type: 2}
       propertyPath: scrollSpeed
-      value: -5
+      value: -7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8fab836e38b1bf94d82691280afc516d, type: 2}

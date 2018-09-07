@@ -26,21 +26,18 @@ public class Robo : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
 
-        float horizontal = Input.GetAxis("Horizontal");
-        HandleMovement(horizontal);
-        if (Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        //float horizontal = Input.GetAxis("Horizontal");
+        //HandleMovement(horizontal)
+        float jump = Input.GetAxis("Jump");
+        if (jump > 0 && !isJumping)
         {
             Jump();
-        }        
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !isJumping)
+        }
+        float attack = Input.GetAxis("Fire1");
+        if (attack > 0 && !isJumping && !isAttacking)
         {
             Attack();
         }
-        //else
-        //{
-        //    isAttacking = false;
-        //    animator.SetBool("isAttacking", isAttacking);
-        //}
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -68,20 +65,20 @@ public class Robo : MonoBehaviour {
         }
     }
 
-    private void HandleMovement(float horizontal)
-    {
-        Vector3 movement = new Vector3(horizontal * speed, rb.velocity.y, rb.velocity.z);
-        rb.velocity = movement;
-        if ((horizontal > 0 && isFlipped) || (horizontal < 0 && !isFlipped))
-        {
-            isFlipped = !isFlipped;
-            Vector3 scale = transform.localScale;
-            scale.z *= -1;
-            transform.localScale = scale;
-        }
+    //private void HandleMovement(float horizontal)
+    //{
+    //    Vector3 movement = new Vector3(horizontal * speed, rb.velocity.y, rb.velocity.z);
+    //    rb.velocity = movement;
+    //    if ((horizontal > 0 && isFlipped) || (horizontal < 0 && !isFlipped))
+    //    {
+    //        isFlipped = !isFlipped;
+    //        Vector3 scale = transform.localScale;
+    //        scale.z *= -1;
+    //        transform.localScale = scale;
+    //    }
 
-        animator.SetFloat("speed", Mathf.Abs(horizontal));
-    }
+    //    animator.SetFloat("speed", Mathf.Abs(horizontal));
+    //}
 
     private void Jump()
     {

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
@@ -26,12 +27,14 @@ public class GameManager : MonoBehaviour {
         if (pauseMenu.GetComponentInChildren<Canvas>().enabled)
         {
             pauseMenu.GetComponentInChildren<Canvas>().enabled = false;
+            EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(null);
             Time.timeScale = 1.0f;
             audioSource.Play();
         }
         else
         {
             pauseMenu.GetComponentInChildren<Canvas>().enabled = true;
+            pauseMenu.selectableButton.Select();
             Time.timeScale = 0.0f;
             audioSource.Pause();
         }
@@ -42,11 +45,13 @@ public class GameManager : MonoBehaviour {
         if (gameOverMenu.GetComponentInChildren<Canvas>().enabled)
         {
             gameOverMenu.GetComponentInChildren<Canvas>().enabled = false;
+            EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(null);
             Time.timeScale = 1.0f;
         }
         else
         {
             gameOverMenu.GetComponentInChildren<Canvas>().enabled = true;
+            gameOverMenu.selectableButton.Select();
             Time.timeScale = 0.0f;
             audioSource.Pause();
         }

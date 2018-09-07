@@ -407,8 +407,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Normal Punch
       takeName: Normal Punch
-      firstFrame: 500
-      lastFrame: 558
+      firstFrame: 508
+      lastFrame: 541
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
