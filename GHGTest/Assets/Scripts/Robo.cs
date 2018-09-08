@@ -102,4 +102,9 @@ public class Robo : MonoBehaviour {
         animator.SetBool("isAttacking", isAttacking);
     }
 
+    public void SetIsMoving(bool val)
+    {
+        animator.SetBool("isMoving", val);
+    }
+
 }

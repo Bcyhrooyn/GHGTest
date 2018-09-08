@@ -5,8 +5,7 @@ using UnityEngine;
 public class ScrollingObject : MonoBehaviour {
 
     private Rigidbody2D rb;
-    [SerializeField]
-    float scrollSpeed;
+    public float scrollSpeed = 0;
 
 	// Use this for initialization
 	void Start () {

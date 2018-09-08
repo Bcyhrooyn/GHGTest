@@ -8,20 +8,64 @@ public class GameManager : MonoBehaviour {
     public PauseMenu pauseMenu;
     public PauseMenu gameOverMenu;
     public PauseMenu victoryMenu;
+    public ScrollingObject[] backgrounds;
+    public FlyingObstacle[] obstacles;
+    public VictoryTrigger victoryTrigger;
+    public FlyingObstacle instructionText;
+    public Robo player;
+
     private AudioSource audioSource;
+    private TextMesh text;
+    private bool isGameStarted = false;
+
+    [SerializeField]
+    float scrollSpeed = -7;
+
+    [SerializeField]
+    float startupTime = 3.4f;
 
 	// Use this for initialization
 	void Start () {
         audioSource = GetComponent<AudioSource>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        text = instructionText.GetComponent<TextMesh>();
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if (Input.GetKeyDown("escape") && !gameOverMenu.GetComponentInChildren<Canvas>().enabled)
         {
             TogglePauseMenu();
         }
+        if (!isGameStarted)
+        {
+            startupTime -= Time.deltaTime * 2;
+            text.text = Mathf.Round(startupTime).ToString();
+            if (text.text == "0")
+            {
+                text.text = "GO!";
+                isGameStarted = true;
+                StartGame();
+            }
+
+        }
 	}
+
+    private void StartGame()
+    {
+        audioSource.Play();
+        foreach (FlyingObstacle obstacle in obstacles)
+        {
+            obstacle.scrollSpeed = scrollSpeed;
+        }
+        foreach (ScrollingObject scroll in backgrounds)
+        {
+            scroll.scrollSpeed = scrollSpeed;
+        }
+        player.SetIsMoving(true);
+        victoryTrigger.scrollSpeed = scrollSpeed;
+        instructionText.scrollSpeed = scrollSpeed;
+    }
+
 
     public void TogglePauseMenu()
     {

@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class VictoryTrigger : MonoBehaviour {
     private Rigidbody rb;
-    [SerializeField]
-    float scrollSpeed = -7;
+    public float scrollSpeed = 0;
     [SerializeField]
     private GameManager gm;
 

@@ -5,8 +5,7 @@ using UnityEngine;
 public class FlyingObstacle : MonoBehaviour {
 
     private Rigidbody rb;
-    [SerializeField]
-    float scrollSpeed;
+    public float scrollSpeed = 0;
 
     // Use this for initialization
     void Start()
