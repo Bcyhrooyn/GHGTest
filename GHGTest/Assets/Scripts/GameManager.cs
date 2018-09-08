@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour {
     public PauseMenu gameOverMenu;
     public PauseMenu victoryMenu;
     public ScrollingObject[] backgrounds;
-    public FlyingObstacle[] obstacles;
     public VictoryTrigger victoryTrigger;
     public FlyingObstacle instructionText;
     public Robo player;
@@ -32,7 +31,7 @@ public class GameManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		if (Input.GetKeyDown("escape") && !gameOverMenu.GetComponentInChildren<Canvas>().enabled)
+		if ((Input.GetKeyDown("escape") || Input.GetKeyDown(KeyCode.Joystick1Button7) )&& !gameOverMenu.GetComponentInChildren<Canvas>().enabled)
         {
             TogglePauseMenu();
         }
@@ -53,13 +52,14 @@ public class GameManager : MonoBehaviour {
     private void StartGame()
     {
         audioSource.Play();
-        foreach (FlyingObstacle obstacle in obstacles)
+        foreach (FlyingObstacle obstacle in GetComponentsInChildren<FlyingObstacle>())
         {
             obstacle.scrollSpeed = scrollSpeed;
         }
         foreach (ScrollingObject scroll in backgrounds)
         {
             scroll.scrollSpeed = scrollSpeed;
+            scroll.StartScroll();
         }
         player.SetIsMoving(true);
         victoryTrigger.scrollSpeed = scrollSpeed;
