@@ -16,10 +16,15 @@ public class Robo : MonoBehaviour {
     private GameManager gm;
     private bool isJumping = false;
     private bool isAttacking = false;
+    [SerializeField]
+    private BoxCollider[] feetColliders;
+    private BoxCollider bodyCollider;
+
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        bodyCollider = GetComponent<BoxCollider>();
 	}
 	
 	// Update is called once per frame
@@ -30,6 +35,7 @@ public class Robo : MonoBehaviour {
         float jump = Input.GetAxis("Jump");
         if (jump > 0 && !isJumping)
         {
+            Debug.Log("Jump");
             Jump();
         }
         float attack = Input.GetAxis("Fire1");
@@ -38,7 +44,6 @@ public class Robo : MonoBehaviour {
             Attack();
         }
     }
-
     private void OnCollisionEnter(Collision collision)
     {
         // Check for punching crystal - it should play some particle effect and get destroyed
@@ -53,11 +58,17 @@ public class Robo : MonoBehaviour {
             isJumping = false;
             animator.SetBool("isJumping", isJumping);
             rb.velocity = new Vector3(0, 0, 0);
+            bodyCollider.enabled = true;
+            foreach (BoxCollider collider in feetColliders)
+            {
+                collider.enabled = false;
+            }
+
         }
         else if (collision.gameObject.CompareTag("Finish"))
         {
-            isJumping = false;
-            animator.SetBool("isJumping", isJumping);
+            //isJumping = false;
+            //animator.SetBool("isJumping", isJumping);
             rb.velocity = new Vector3(0, 0, 0);
         }
         // All other collisions, i.e Game Over
@@ -88,6 +99,12 @@ public class Robo : MonoBehaviour {
         animator.SetBool("isJumping", isJumping);
         Vector3 movement = new Vector3(0, jumpHeight, 0);
         rb.AddForce(movement);
+
+        bodyCollider.enabled = !bodyCollider.enabled;
+        foreach (BoxCollider collider in feetColliders)
+        {
+            collider.enabled = !collider.enabled;
+        }
     }
 
     private void Attack()

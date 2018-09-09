@@ -21,7 +21,7 @@ public class VictoryTrigger : MonoBehaviour {
         rb.MovePosition(transform.position + scroll * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
         gm.ToggleVictoryMenu();
     }
