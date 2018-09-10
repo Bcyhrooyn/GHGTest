@@ -35,7 +35,6 @@ public class Robo : MonoBehaviour {
         float jump = Input.GetAxis("Jump");
         if (jump > 0 && !isJumping)
         {
-            Debug.Log("Jump");
             Jump();
         }
         float attack = Input.GetAxis("Fire1");

@@ -10,7 +10,13 @@ public class ScrollingObject : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-	}	
+	}
+
+    //private void Update()
+    //{
+    //    Vector2 x = new Vector2(transform.position.x + scrollSpeed, 0);
+    //    transform.position = x ;
+    //}
 
     public void StartScroll()
     {
