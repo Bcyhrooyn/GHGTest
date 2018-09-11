@@ -25,17 +25,16 @@
 	uniform float _Outline;
 	uniform float4 _OutlineColor;
 
-	v2f vert(appdata v) {
-		// just make a copy of incoming vertex data but scaled according to normal direction
-		v2f o;
-		o.pos = UnityObjectToClipPos(v.vertex);
+	v2f vert(appdata input_vertex) {
+		v2f output_frag;
+		output_frag.pos = UnityObjectToClipPos(input_vertex.vertex);
 
-		float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
+		float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, input_vertex.normal);
 		float2 offset = TransformViewToProjection(norm.xy);
 
-		o.pos.xy += offset * o.pos.z * _Outline;
-		o.color = _OutlineColor;
-		return o;
+		output_frag.pos.xy += offset * output_frag.pos.z * _Outline;
+		output_frag.color = _OutlineColor;
+		return output_frag;
 	}
 	ENDCG
 
@@ -79,15 +78,17 @@
 	}
 	ENDCG
 
-		Pass{
+	Pass{
 		Name "OUTLINE"
 		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" }
 		Cull Front
 
 		CGPROGRAM
+
 #pragma vertex vert
 #pragma fragment frag
-		half4 frag(v2f i) :COLOR{ return i.color; }
+			half4 frag(v2f i) :COLOR{ return i.color; }
+
 		ENDCG
 	}
 	}
