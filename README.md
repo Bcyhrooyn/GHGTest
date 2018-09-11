@@ -11,3 +11,6 @@ https://www.turbosquid.com/FullPreview/Index.cfm/ID/1189852
 
 Spikes from www.cgtrader.com
 https://www.cgtrader.com/free-3d-models/architectural/engineering/spikes-6b3369b4e489f5a07743c05d4d8d1da5
+
+Sound efffects from OpenGameArt.org
+https://opengameart.org/content/512-sound-effects-8-bit-style

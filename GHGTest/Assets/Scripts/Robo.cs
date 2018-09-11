@@ -20,8 +20,15 @@ public class Robo : MonoBehaviour {
     private BoxCollider[] feetColliders;
     private BoxCollider bodyCollider;
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    private AudioClip jumpAudio;
+    [SerializeField]
+    private AudioClip punchAudio;
+    [SerializeField]
+    private Vector3 audioLocation = new Vector3(0, 0, -8);
+
+    // Use this for initialization
+    void Start () {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         bodyCollider = GetComponent<BoxCollider>();
@@ -36,16 +43,18 @@ public class Robo : MonoBehaviour {
         if (jump > 0 && !isJumping)
         {
             Jump();
+            AudioSource.PlayClipAtPoint(jumpAudio, audioLocation);
         }
         float attack = Input.GetAxis("Fire1");
         if (attack > 0 && !isAttacking)
         {
             Attack();
+            AudioSource.PlayClipAtPoint(punchAudio, audioLocation);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        // Check for punching crystal - it should play some particle effect and get destroyed
+        // Check for punching crystal - it should get destroyed
         if (collision.gameObject.CompareTag("Destructible") && isAttacking)
         {
             Destroy(collision.gameObject);
@@ -64,33 +73,18 @@ public class Robo : MonoBehaviour {
             }
 
         }
+
         else if (collision.gameObject.CompareTag("Finish"))
         {
-            //isJumping = false;
-            //animator.SetBool("isJumping", isJumping);
             rb.velocity = new Vector3(0, 0, 0);
         }
+
         // All other collisions, i.e Game Over
         else
         {
-            gm.ToggleGameOverMenu();
+            gm.OpenGameOverMenu();
         }
     }
-
-    //private void HandleMovement(float horizontal)
-    //{
-    //    Vector3 movement = new Vector3(horizontal * speed, rb.velocity.y, rb.velocity.z);
-    //    rb.velocity = movement;
-    //    if ((horizontal > 0 && isFlipped) || (horizontal < 0 && !isFlipped))
-    //    {
-    //        isFlipped = !isFlipped;
-    //        Vector3 scale = transform.localScale;
-    //        scale.z *= -1;
-    //        transform.localScale = scale;
-    //    }
-
-    //    animator.SetFloat("speed", Mathf.Abs(horizontal));
-    //}
 
     private void Jump()
     {

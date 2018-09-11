@@ -28,7 +28,7 @@ public class PauseMenu : MonoBehaviour {
     {
         if (isGameOver)
         {
-            GM.ToggleGameOverMenu();
+            GM.CloseGameOverMenu();
         }
         else
         {

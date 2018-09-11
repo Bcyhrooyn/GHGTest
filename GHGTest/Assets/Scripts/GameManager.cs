@@ -74,7 +74,8 @@ public class GameManager : MonoBehaviour {
             pauseMenu.GetComponentInChildren<Canvas>().enabled = false;
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(null);
             Time.timeScale = 1.0f;
-            audioSource.Play();
+            if (isGameStarted)
+                audioSource.Play();
         }
         else
         {
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void ToggleGameOverMenu()
+    public void CloseGameOverMenu()
     {
         if (gameOverMenu.GetComponentInChildren<Canvas>().enabled)
         {
@@ -93,7 +94,11 @@ public class GameManager : MonoBehaviour {
             EventSystem.current.GetComponent<EventSystem>().SetSelectedGameObject(null);
             Time.timeScale = 1.0f;
         }
-        else
+    }
+
+    public void OpenGameOverMenu()
+    {
+        if (!gameOverMenu.GetComponentInChildren<Canvas>().enabled)
         {
             gameOverMenu.GetComponentInChildren<Canvas>().enabled = true;
             gameOverMenu.selectableButton.Select();

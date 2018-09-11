@@ -12,12 +12,6 @@ public class ScrollingObject : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
 	}
 
-    //private void Update()
-    //{
-    //    Vector2 x = new Vector2(transform.position.x + scrollSpeed, 0);
-    //    transform.position = x ;
-    //}
-
     public void StartScroll()
     {
         rb.velocity = new Vector2(scrollSpeed, 0);
